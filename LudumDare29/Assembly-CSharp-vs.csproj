@@ -53,6 +53,8 @@
      <Compile Include="Assets\GameScripts\Player\PlayerShipBehavior.cs" />
      <Compile Include="Assets\GameScripts\Ship\ShipButtonLogic.cs" />
      <Compile Include="Assets\GameScripts\Ship\ShipPhysics.cs" />
+     <Compile Include="Assets\GameScripts\ShipConstruction.cs" />
+     <Compile Include="Assets\GameScripts\ShipPhysics.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>

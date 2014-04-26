@@ -135,7 +135,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -175,9 +175,19 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
+<<<<<<< HEAD
+  - 4: {fileID: 428673413}
+  - 212: {fileID: 428673412}
+  - 50: {fileID: 428673409}
+  - 60: {fileID: 428673410}
+  - 114: {fileID: 428673411}
+  m_Layer: 8
+  m_Name: subTest
+=======
   - 4: {fileID: 706826549}
   m_Layer: 0
   m_Name: shipFirePoint
+>>>>>>> a0172bc5996a6de7b5069c8412c92496249d3d3a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,9 +230,42 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+<<<<<<< HEAD
+  m_Poly:
+    m_Paths:
+    - - {x: .63499999, y: .114999995}
+      - {x: .545000017, y: .214999989}
+      - {x: .314999998, y: .314999998}
+      - {x: -.294999987, y: .314999998}
+      - {x: -.545000017, y: .224999994}
+      - {x: -.63499999, y: .104999997}
+      - {x: -.63499999, y: -.0850000009}
+      - {x: -.534999967, y: -.204999998}
+      - {x: -.444999993, y: -.264999986}
+      - {x: -.24499999, y: -.314999998}
+      - {x: .234999999, y: -.314999998}
+      - {x: .294999987, y: -.314999998}
+      - {x: .545000017, y: -.214999989}
+      - {x: .63499999, y: -.104999997}
+--- !u!114 &428673411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 428673408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5ba9af671016f4aa161a8ce112a33d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boatPart: {fileID: 100000, guid: 7ed89a64630b0324ebe2781ab2a80ab3, type: 2}
+  buttonRoom: {fileID: 100000, guid: 1c0ea08de365e4349954a4b78b5a498f, type: 2}
+--- !u!212 &428673412
+=======
   m_Size: {x: .310000002, y: .310000002}
   m_Center: {x: 0, y: 0}
 --- !u!212 &846104752
+>>>>>>> a0172bc5996a6de7b5069c8412c92496249d3d3a
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
