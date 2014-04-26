@@ -1,3 +1,7 @@
 Player Movement
+ - Player Moves Left and Right with A and D
+ - Player Jumps with Space
+
 Screen Wrap
 Keyboard Input
+
