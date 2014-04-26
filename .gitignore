@@ -1,2 +1,8 @@
 LudumDare29/Temp/UnityLockfile
 LudumDare29/Temp
+LudumDare29/obj
+LudumDare29/Library
+/Library
+*.csproj
+*.unityproj
+*.sln

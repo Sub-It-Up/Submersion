@@ -26,7 +26,7 @@ public class ShipPhysics : MonoBehaviour
   void FixedUpdate()
   {
      //get angle of the ship
-    dirDeg = this.transform.rotation.z;
+    dirDeg = this.transform.rotation.z * Mathf.PI;
      //check the bounds of the thrust
     if (thrust > maxThrust)
       thrust = maxThrust;
@@ -46,7 +46,9 @@ public class ShipPhysics : MonoBehaviour
   private void UpdateVelocity()
   {
      //gives us a direction vector in the direction to apply thrust
-    Vector2 thrustVec = new Vector2(Mathf.Cos (dirDeg), Mathf.Sin (dirDeg));
+    Vector2 thrustVec = new Vector2(Mathf.Cos(dirDeg), Mathf.Sin (dirDeg));
+	  Debug.Log(dirDeg);
+	  Debug.Log(thrustVec);
     thrustVec *= thrust;
      //apply thrust to the velocity of the ship
     this.rigidbody2D.velocity += thrustVec * Time.fixedDeltaTime;
