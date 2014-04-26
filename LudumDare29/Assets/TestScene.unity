@@ -835,7 +835,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1722926295}
   m_Mass: 1000
-  m_LinearDrag: 0
+  m_LinearDrag: .600000024
   m_AngularDrag: .0500000007
   m_GravityScale: .00999999978
   m_FixedAngle: 0
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffca988ced24c984692fa7a4810e35d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balistScale: .200000003
+  balistScale: 1
   balist: 0
   thrust: 0
   maxThrust: 5
