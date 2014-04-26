@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameScripts\ShipBehavior.cs" />
+     <Compile Include="Assets\GameScripts\Camera\CameraBehavior.cs" />
+     <Compile Include="Assets\GameScripts\Player\PlayerBehavior.cs" />
+     <Compile Include="Assets\GameScripts\Player\PlayerShipBehavior.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
