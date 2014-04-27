@@ -20,10 +20,10 @@ public class PlayerBehavior : MonoBehaviour
 	void Update() 
     {
         // cast a ray downward, looking for only GroundLayer objects -> ("1 << " is unknown to me, but it's the way to do it, it seems)
-        RaycastHit2D raycastInfo = Physics2D.Raycast(this.transform.position, -Vector2.up, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));
+        RaycastHit2D raycastInfo = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y - (colliderExtents.y + .005f)), -Vector2.up, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));
 
         if (raycastInfo)
-            Debug.DrawLine(this.transform.position, raycastInfo.point, Color.red);
+            Debug.DrawLine(new Vector2(this.transform.position.x, this.transform.position.y - (colliderExtents.y + .005f)), raycastInfo.point, Color.red);
 
         if (Input.GetKey(KeyCode.A))
             this.transform.rigidbody2D.AddForce(new Vector2(-PlayerMoveForce, 0));

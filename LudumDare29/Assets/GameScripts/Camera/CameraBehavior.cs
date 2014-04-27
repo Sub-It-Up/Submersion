@@ -11,6 +11,7 @@ public class CameraBehavior : MonoBehaviour
 {
     public float WrapMaxSize = 5;               // The max value for when to wrap
     public PlayerShipBehavior PlayerShipObject; // The player ship object to keep track of
+    public PlayerBehavior[] PlayerObjects;
 
     // Determines if a particular object needs to be wrapped
     // returns an object array
@@ -22,25 +23,25 @@ public class CameraBehavior : MonoBehaviour
         // [1] -> the wrapped vector
         WrappedBoundaryData boundaryData = new WrappedBoundaryData();
 
-        if (checkVector.y - displaceVector.y < -WrapMaxSize)
+        if (checkVector.y < -WrapMaxSize - displaceVector.y)
         {
             boundaryData.isWrapped     = true;
             boundaryData.wrappedVector = new Vector2(checkVector.x, WrapMaxSize - displaceVector.y);
         }
-        else if (checkVector.y + displaceVector.y > WrapMaxSize)
+        else if (checkVector.y > WrapMaxSize + displaceVector.y)
         {
             boundaryData.isWrapped     = true;
             boundaryData.wrappedVector = new Vector2(checkVector.x, -WrapMaxSize + displaceVector.y);
         }
-        else if (checkVector.x - displaceVector.x < -2 * WrapMaxSize)
+        else if (checkVector.x < -2 * WrapMaxSize - displaceVector.x)
         {
             boundaryData.isWrapped     = true;
-            boundaryData.wrappedVector = new Vector2(2 * WrapMaxSize - displaceVector.x, checkVector.y);
+            boundaryData.wrappedVector = new Vector2(2 * WrapMaxSize + displaceVector.x, checkVector.y);
         }
-        else if (checkVector.x + displaceVector.x > 2 * WrapMaxSize)
+        else if (checkVector.x > 2 * WrapMaxSize + displaceVector.x)
         {
             boundaryData.isWrapped     = true;
-            boundaryData.wrappedVector = new Vector2(-2 * WrapMaxSize + displaceVector.x, checkVector.y);
+            boundaryData.wrappedVector = new Vector2(-2 * WrapMaxSize - displaceVector.x, checkVector.y);
         }
 
         return boundaryData;
@@ -51,6 +52,16 @@ public class CameraBehavior : MonoBehaviour
     {
         WrappedBoundaryData playerShipBoundaryData = isOutsideBoundary(PlayerShipObject.transform.position, PlayerShipObject.getColliderExtents());
         if (playerShipBoundaryData.isWrapped)
-            PlayerShipObject.transform.position = playerShipBoundaryData.wrappedVector;
+        {
+            // temporarily set parent of Player Objects to allow them to also wrap
+            for (int i = 0; i < PlayerObjects.Length; i++)
+                PlayerObjects[i].transform.parent = PlayerShipObject.transform;
+
+            PlayerShipObject.transform.position = playerShipBoundaryData.wrappedVector; // wrap
+
+            // reset Player Objects parent to null
+            for (int i = 0; i < PlayerObjects.Length; i++)
+                PlayerObjects[i].transform.parent = null;
+        }
     }
 }

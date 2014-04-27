@@ -21,7 +21,9 @@ public class MissileTerminalBehavior : MonoBehaviour
             int randomMissile = Random.Range(0, MissileObjects.Length);
             Vector2 randomFirePoint = MissileFirePoints[randomFirePointIndex].position;
 
-            GameObject.Instantiate(MissileObjects[randomMissile], randomFirePoint, Quaternion.identity);
+            GameObject newMissile = (GameObject)GameObject.Instantiate(MissileObjects[randomMissile], randomFirePoint, Quaternion.identity);
+
+            newMissile.transform.rotation = Quaternion.AngleAxis(transform.parent.rotation.eulerAngles.z, Vector3.forward);
 
             elapsedTimeSinceFire = FireDelayTime;
         }

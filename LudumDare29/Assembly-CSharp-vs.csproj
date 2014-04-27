@@ -53,7 +53,11 @@
      <Compile Include="Assets\GameScripts\Ship\ShipButtonLogic.cs" />
      <Compile Include="Assets\GameScripts\Ship\ShipPhysics.cs" />
      <Compile Include="Assets\GameScripts\ShipConstruction.cs" />
+     <Compile Include="Assets\GameScripts\SpawnBehavior\SpawnObjectBehavior.cs" />
+     <Compile Include="Assets\GameScripts\SpineMine\SpineMineBehavior.cs" />
+     <Compile Include="Assets\GameScripts\Terminals\BalistTerminalBehavior.cs" />
      <Compile Include="Assets\GameScripts\Terminals\MissileTerminalBehavior.cs" />
+     <Compile Include="Assets\GameScripts\Terminals\RotationalTerminalBehavior.cs" />
      <Compile Include="Assets\GameScripts\Terminals\ThrustTerminalBehavior.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
