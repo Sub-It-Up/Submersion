@@ -266,7 +266,72 @@ public class ShipConstruction : MonoBehaviour {
 		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
 	};
 
-	void GenerateRightRoom(int x, int y, int newY, int roomNumber)
+	int[,] topMidRoom1 = new int[10, 10] { 
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 1, 1, 1, 0, 0, 1, 1, 1, 1},
+		{ 0, 0, 0, 1, 0, 0, 1, 0, 0, 0},
+		{ 0, 0, 0, 1, 0, 0, 1, 0, 0, 0},
+		{ 1, 0, 0, 1, 0, 0, 1, 0, 0, 1},
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+	};
+	
+	int[,] topMidRoom2 = new int[10, 10] { 
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 1, 1, 0, 1, 1, 1, 0, 0, 1},
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},	
+	};
+	
+	int[,] topMidRoom3 = new int[10, 10] { 
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0}, 
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+	};
+	
+	int[,] topMidRoom4 = new int[10, 10] { 
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0}, 
+		{ 0, 0, 0, 0, 2, 2, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+	};
+	
+	int[,] topMidRoom5 = new int[10, 10] { 
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+		{ 0, 2, 2, 1, 1, 1, 1, 0, 0, 0},
+		{ 0, 2, 2, 1, 1, 1, 1, 0, 0, 0},
+		{ 1, 1, 1, 1, 1, 1, 1, 0, 0, 1},
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 0, 0, 1, 1, 1, 1, 0, 0, 1},
+	};
+
+	void GenerateRightRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
 	{
 
 		switch (roomNumber)
@@ -277,7 +342,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(rightRoom1[y, x] == 2)
+				else if(rightRoom1[y, x] == 2 && terminalSelect[9] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -289,7 +354,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(rightRoom2[y, x] == 2)
+				else if(rightRoom2[y, x] == 2 && terminalSelect[9] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -301,7 +366,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(rightRoom3[y, x] == 2)
+				else if(rightRoom3[y, x] == 2 && terminalSelect[9] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -313,7 +378,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(rightRoom4[y, x] == 2)
+				else if(rightRoom4[y, x] == 2 && terminalSelect[9] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -325,7 +390,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(rightRoom5[y, x] == 2)
+				else if(rightRoom5[y, x] == 2 && terminalSelect[9] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -334,7 +399,7 @@ public class ShipConstruction : MonoBehaviour {
 		}
 	}
 
-  void GenerateTopRightRoom(int x, int y, int newY, int roomNumber)
+  void GenerateTopRightRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
   {
     
     switch (roomNumber)
@@ -345,7 +410,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(rightRoom1[y, x] == 2)
+	  else if(rightRoom1[y, x] == 2 && terminalSelect[4] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -357,7 +422,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(rightRoom2[y, x] == 2)
+	  else if(rightRoom2[y, x] == 2 && terminalSelect[4] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -369,7 +434,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(rightRoom3[y, x] == 2)
+	  else if(rightRoom3[y, x] == 2 && terminalSelect[4] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -381,7 +446,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(rightRoom4[y, x] == 2)
+		else if(rightRoom4[y, x] == 2  && terminalSelect[4] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -393,7 +458,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(rightRoom5[y, x] == 2)
+		else if(rightRoom5[y, x] == 2  && terminalSelect[4] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -402,7 +467,7 @@ public class ShipConstruction : MonoBehaviour {
     }
   }
 
-	void GenerateLeftRoom(int x, int y, int newY, int roomNumber)
+	void GenerateLeftRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
 	{
 		switch (roomNumber)
 		{
@@ -412,7 +477,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(leftRoom1[y, x] == 2)
+			else if(leftRoom1[y, x] == 2 && terminalSelect[5] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -424,7 +489,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(leftRoom2[y, x] == 2)
+			else if(leftRoom2[y, x] == 2 && terminalSelect[5] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -436,7 +501,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(leftRoom3[y, x] == 2)
+			else if(leftRoom3[y, x] == 2 && terminalSelect[5] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -448,7 +513,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(leftRoom4[y, x] == 2)
+			else if(leftRoom4[y, x] == 2 && terminalSelect[5] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -460,7 +525,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(leftRoom5[y, x] == 2)
+			else if(leftRoom5[y, x] == 2 && terminalSelect[5] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -470,7 +535,7 @@ public class ShipConstruction : MonoBehaviour {
 		}
 	}
 
-  void GenerateTopLeftRoom(int x, int y, int newY, int roomNumber)
+  void GenerateTopLeftRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
   {
     switch (roomNumber)
     {
@@ -480,7 +545,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(leftRoom1[y, x] == 2)
+		else if(leftRoom1[y, x] == 2 && terminalSelect[0] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -492,7 +557,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(leftRoom2[y, x] == 2)
+		else if(leftRoom2[y, x] == 2 && terminalSelect[0] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -504,7 +569,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(leftRoom3[y, x] == 2)
+		else if(leftRoom3[y, x] == 2 && terminalSelect[0] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -516,7 +581,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(leftRoom4[y, x] == 2)
+		else if(leftRoom4[y, x] == 2 && terminalSelect[0] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -528,7 +593,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(leftRoom5[y, x] == 2)
+		else if(leftRoom5[y, x] == 2 && terminalSelect[0] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 20, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -538,7 +603,7 @@ public class ShipConstruction : MonoBehaviour {
     }
   }
 
-	void GenerateMidRoom(int x, int y, int newY, int roomNumber)
+	void GenerateMidRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
 	{
 		switch (roomNumber)
 		{
@@ -548,7 +613,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(midRoom1[y, x] == 2)
+				else if(midRoom1[y, x] == 2 && terminalSelect[7] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -560,7 +625,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(midRoom2[y, x] == 2)
+				else if(midRoom2[y, x] == 2 && terminalSelect[7] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -572,7 +637,7 @@ public class ShipConstruction : MonoBehaviour {
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(midRoom3[y, x] == 2)
+				else if(midRoom3[y, x] == 2 && terminalSelect[7] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
@@ -584,7 +649,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(midRoom4[y, x] == 2)
+			else if(midRoom4[y, x] == 2 && terminalSelect[7] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -596,7 +661,7 @@ public class ShipConstruction : MonoBehaviour {
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(midRoom5[y, x] == 2)
+			else if(midRoom5[y, x] == 2 && terminalSelect[7] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -605,7 +670,7 @@ public class ShipConstruction : MonoBehaviour {
 		}
 	}
 
-  void GenerateMidLeftRoom(int x, int y, int newY, int roomNumber)
+  void GenerateMidLeftRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
   {
     switch (roomNumber)
     {
@@ -615,7 +680,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom1[y, x] == 2)
+		else if(midRoom1[y, x] == 2  && terminalSelect[6] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -627,7 +692,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom2[y, x] == 2)
+		else if(midRoom2[y, x] == 2 && terminalSelect[6] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -639,7 +704,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom3[y, x] == 2)
+		else if(midRoom3[y, x] == 2 && terminalSelect[6] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -651,7 +716,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom4[y, x] == 2)
+		else if(midRoom4[y, x] == 2 && terminalSelect[6] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -663,7 +728,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom5[y, x] == 2)
+		else if(midRoom5[y, x] == 2 && terminalSelect[6] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -672,7 +737,7 @@ public class ShipConstruction : MonoBehaviour {
     }
   }
 	
-  void GenerateMidRightRoom(int x, int y, int newY, int roomNumber)
+  void GenerateMidRightRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
   {
     switch (roomNumber)
     {
@@ -682,7 +747,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom1[y, x] == 2)
+		else if(midRoom1[y, x] == 2 && terminalSelect[8] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -694,7 +759,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom2[y, x] == 2)
+		else if(midRoom2[y, x] == 2 && terminalSelect[8] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -706,7 +771,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom3[y, x] == 2)
+		else if(midRoom3[y, x] == 2 && terminalSelect[8] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -718,7 +783,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom4[y, x] == 2)
+		else if(midRoom4[y, x] == 2 && terminalSelect[8] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -730,7 +795,7 @@ public class ShipConstruction : MonoBehaviour {
         GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x + 10, newY, 0), transform.rotation);
         parts.transform.parent = this.transform;
       }
-      else if(midRoom5[y, x] == 2)
+		else if(midRoom5[y, x] == 2 && terminalSelect[8] == 1)
       {
         GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x + 10, newY, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
@@ -739,65 +804,65 @@ public class ShipConstruction : MonoBehaviour {
     }
   }
 
-	void GenerateTopRoom(int x, int y, int newY, int roomNumber)
+	void GenerateTopRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
 	{
 		switch(roomNumber)
 		{
 			case 1:
-				if(topRoom1[y, x] == 1)
+				if(topMidRoom1[y, x] == 1)
 				{
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY + 10, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(topRoom1[y, x] == 2)
+				else if(topMidRoom1[y, x] == 2 && terminalSelect[2] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY + 10, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
 				}
 				break;
 			case 2:
-				if(topRoom2[y, x] == 1)
+				if(topMidRoom2[y, x] == 1)
 				{
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY + 10, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(topRoom2[y, x] == 2)
+				else if(topMidRoom2[y, x] == 2 && terminalSelect[2] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY + 10, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
 				}
 				break;
 			case 3:
-				if(topRoom3[y, x] == 1)
+				if(topMidRoom3[y, x] == 1)
 				{
 					GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY + 10, 0), transform.rotation);
 					parts.transform.parent = this.transform;
 				}
-				else if(topRoom3[y, x] == 2)
+				else if(topMidRoom3[y, x] == 2 && terminalSelect[2] == 1)
 				{
 					GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY + 10, 0), transform.rotation);
 					bRoom.transform.parent = this.transform;
 				}
 				break;
 		case 4:
-			if(topRoom4[y, x] == 1)
+			if(topMidRoom4[y, x] == 1)
 			{
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY + 10, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(topRoom4[y, x] == 2)
+			else if(topMidRoom4[y, x] == 2 && terminalSelect[2] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY + 10, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
 			}
 			break;
 		case 5:
-			if(topRoom5[y, x] == 1)
+			if(topMidRoom5[y, x] == 1)
 			{
 				GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x, newY + 10, 0), transform.rotation);
 				parts.transform.parent = this.transform;
 			}
-			else if(topRoom5[y, x] == 2)
+			else if(topMidRoom5[y, x] == 2 && terminalSelect[2] == 1)
 			{
 				GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x, newY + 10, 0), transform.rotation);
 				bRoom.transform.parent = this.transform;
@@ -806,14 +871,14 @@ public class ShipConstruction : MonoBehaviour {
 		}
 	}
 
-  void GenerateTopMidRightRoom(int x, int y, int newY, int roomNumber)
+  void GenerateTopMidRightRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
   {
     switch (roomNumber) {
     case 1:
       if (topRoom1 [y, x] == 1) {
         GameObject parts = (GameObject)Instantiate (boatPart, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
-      } else if (topRoom1 [y, x] == 2) {
+		} else if (topRoom1 [y, x] == 2 && terminalSelect[3] == 1) {
         GameObject bRoom = (GameObject)Instantiate (buttonRoom, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
       }
@@ -822,7 +887,7 @@ public class ShipConstruction : MonoBehaviour {
       if (topRoom2 [y, x] == 1) {
         GameObject parts = (GameObject)Instantiate (boatPart, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
-      } else if (topRoom2 [y, x] == 2) {
+			} else if (topRoom2 [y, x] == 2 && terminalSelect[3] == 1) {
         GameObject bRoom = (GameObject)Instantiate (buttonRoom, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
       }
@@ -831,7 +896,7 @@ public class ShipConstruction : MonoBehaviour {
       if (topRoom3 [y, x] == 1) {
         GameObject parts = (GameObject)Instantiate (boatPart, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
-      } else if (topRoom3 [y, x] == 2) {
+			} else if (topRoom3 [y, x] == 2 && terminalSelect[3] == 1) {
         GameObject bRoom = (GameObject)Instantiate (buttonRoom, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
       }
@@ -840,7 +905,7 @@ public class ShipConstruction : MonoBehaviour {
       if (topRoom4 [y, x] == 1) {
         GameObject parts = (GameObject)Instantiate (boatPart, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
-      } else if (topRoom4 [y, x] == 2) {
+			} else if (topRoom4 [y, x] == 2 && terminalSelect[3] == 1) {
         GameObject bRoom = (GameObject)Instantiate (buttonRoom, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
       }
@@ -849,7 +914,7 @@ public class ShipConstruction : MonoBehaviour {
       if (topRoom5 [y, x] == 1) {
         GameObject parts = (GameObject)Instantiate (boatPart, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         parts.transform.parent = this.transform;
-      } else if (topRoom5 [y, x] == 2) {
+			} else if (topRoom5 [y, x] == 2 && terminalSelect[3] == 1) {
         GameObject bRoom = (GameObject)Instantiate (buttonRoom, new Vector3 (x + 10, newY + 10, 0), transform.rotation);
         bRoom.transform.parent = this.transform;
       }
@@ -858,7 +923,7 @@ public class ShipConstruction : MonoBehaviour {
    
   }
 
-    void GenerateTopMidLeftRoom(int x, int y, int newY, int roomNumber)
+    void GenerateTopMidLeftRoom(int x, int y, int newY, int roomNumber, int [] terminalSelect)
     {
       switch(roomNumber)
       {
@@ -868,7 +933,7 @@ public class ShipConstruction : MonoBehaviour {
           GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           parts.transform.parent = this.transform;
         }
-        else if(topRoom1[y, x] == 2)
+			else if(topRoom1[y, x] == 2 && terminalSelect[1] == 1)
         {
           GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           bRoom.transform.parent = this.transform;
@@ -880,7 +945,7 @@ public class ShipConstruction : MonoBehaviour {
           GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           parts.transform.parent = this.transform;
         }
-        else if(topRoom2[y, x] == 2)
+			else if(topRoom2[y, x] == 2 && terminalSelect[1] == 1)
         {
           GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           bRoom.transform.parent = this.transform;
@@ -892,7 +957,7 @@ public class ShipConstruction : MonoBehaviour {
           GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           parts.transform.parent = this.transform;
         }
-        else if(topRoom3[y, x] == 2)
+			else if(topRoom3[y, x] == 2 && terminalSelect[1] == 1)
         {
           GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           bRoom.transform.parent = this.transform;
@@ -904,7 +969,7 @@ public class ShipConstruction : MonoBehaviour {
           GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           parts.transform.parent = this.transform;
         }
-        else if(topRoom4[y, x] == 2)
+			else if(topRoom4[y, x] == 2 && terminalSelect[1] == 1)
         {
           GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           bRoom.transform.parent = this.transform;
@@ -916,7 +981,7 @@ public class ShipConstruction : MonoBehaviour {
           GameObject parts = (GameObject)Instantiate(boatPart, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           parts.transform.parent = this.transform;
         }
-        else if(topRoom5[y, x] == 2)
+			else if(topRoom5[y, x] == 2 && terminalSelect[1] == 1)
         {
           GameObject bRoom = (GameObject)Instantiate(buttonRoom, new Vector3(x - 10, newY + 10, 0), transform.rotation);
           bRoom.transform.parent = this.transform;
@@ -930,6 +995,9 @@ public class ShipConstruction : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		int [] terminalSelect = new int[10] {0,0,0,0,0,0,0,0,0,0};
+		int terminalCount = 0;
+		int terminalNumber;
 		int lRoomNum;
 		int tRoomNum;
 		int mRoomNum;
@@ -978,31 +1046,42 @@ public class ShipConstruction : MonoBehaviour {
       trRoomNum = (int)Random.Range (1, 5);
     } while(trRoomNum == rRoomNum);
 
+		while(terminalCount < 4)
+		{
+			terminalNumber = (int) Random.Range(0, 9);
+			if(terminalSelect[terminalNumber] == 0)
+			{
+				++terminalCount;
+				terminalSelect[terminalNumber] = 1;
+			}
+		}
+
+
 		//Loop through the room arrays
 		for(int y = 9, newY = 0; y >= 0; --y, ++newY)
 		{
 			for(int x = 0; x < 10; ++x)
 			{	
 				//Right room generation
-				GenerateRightRoom(x, y, newY, rRoomNum);
-        //Mid room generation
-				GenerateMidRoom(x, y, newY, mRoomNum);
-        //Mid room generation
-        GenerateMidLeftRoom(x, y, newY, mlRoomNum);
-        //Mid room generation
-        GenerateMidRightRoom(x, y, newY, mrRoomNum);
+				GenerateRightRoom(x, y, newY, rRoomNum, terminalSelect);
+        		//Mid room generation
+				GenerateMidRoom(x, y, newY, mRoomNum, terminalSelect);
+		        //Mid room generation
+		        GenerateMidLeftRoom(x, y, newY, mlRoomNum, terminalSelect);
+		        //Mid room generation
+		        GenerateMidRightRoom(x, y, newY, mrRoomNum, terminalSelect);
 				//Left room generation
-				GenerateLeftRoom(x, y, newY, lRoomNum);
+				GenerateLeftRoom(x, y, newY, lRoomNum, terminalSelect);
 				//Top room generation
-				GenerateTopRoom(x, y, newY, tRoomNum);
-        //Top-Mid-Left room generation
-        GenerateTopMidLeftRoom(x, y, newY, tmlRoomNum);
-        //Top-Mid-Right room generation
-        GenerateTopMidRightRoom(x, y, newY, tmrRoomNum);
-        //Top-Left room generation
-        GenerateTopLeftRoom(x, y, newY, tlRoomNum);
-        //Top-Right room generation
-        GenerateTopRightRoom(x, y, newY, trRoomNum);
+				GenerateTopRoom(x, y, newY, tRoomNum, terminalSelect);
+		        //Top-Mid-Left room generation
+		        GenerateTopMidLeftRoom(x, y, newY, tmlRoomNum, terminalSelect);
+		        //Top-Mid-Right room generation
+		        GenerateTopMidRightRoom(x, y, newY, tmrRoomNum, terminalSelect);
+		        //Top-Left room generation
+		        GenerateTopLeftRoom(x, y, newY, tlRoomNum, terminalSelect);
+		        //Top-Right room generation
+		        GenerateTopRightRoom(x, y, newY, trRoomNum, terminalSelect);
 
 			}
 		}

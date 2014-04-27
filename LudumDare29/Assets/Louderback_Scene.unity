@@ -87,6 +87,7 @@ GameObject:
   - 114: {fileID: 772257023}
   - 50: {fileID: 772257020}
   - 61: {fileID: 772257018}
+  - 95: {fileID: 772257024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -170,10 +171,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c726d7f43c2d1846949d47fdcdbf416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNum: 1
   PlayerMaxSpeed: 8
   PlayerMoveForce: 10
   PlayerJumpForce: 200
   GroundDisplace: .0500000007
+--- !u!95 &772257024
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 772257017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &1739060139
 GameObject:
   m_ObjectHideFlags: 0
