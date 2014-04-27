@@ -12,6 +12,7 @@ public class CameraBehavior : MonoBehaviour
     public float WrapMaxSize = 5;               // The max value for when to wrap
     public PlayerShipBehavior PlayerShipObject; // The player ship object to keep track of
     public PlayerBehavior[] PlayerObjects;
+    public Material grappleMaterial;
 
     // Determines if a particular object needs to be wrapped
     // returns an object array
@@ -45,6 +46,24 @@ public class CameraBehavior : MonoBehaviour
         }
 
         return boundaryData;
+    }
+
+    void OnPostRender()
+    {
+        Vector3 worldMouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        Vector3 mouseDir = (worldMouse - PlayerObjects[0].transform.position);
+        mouseDir = new Vector3(mouseDir.x, mouseDir.y, 0);
+        mouseDir.Normalize();
+        RaycastHit2D raycastInfo = Physics2D.Raycast(PlayerObjects[0].transform.position + (PlayerObjects[0].GetColliderExtents().magnitude * mouseDir), mouseDir, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));
+
+        GL.PushMatrix();
+        grappleMaterial.SetPass(0);
+        GL.Begin(GL.LINES);
+        GL.Color(grappleMaterial.color);
+        GL.Vertex(PlayerObjects[0].transform.position);
+        GL.Vertex(raycastInfo.point);
+        GL.End();
+        GL.PopMatrix();
     }
 
     // Update is called once per frame

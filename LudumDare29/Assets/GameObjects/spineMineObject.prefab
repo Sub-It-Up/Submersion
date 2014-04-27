@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovePower: 4
   MaxSpeed: 1.29999995
-  explosionSound: {fileID: 8300000, guid: 7598ff4560011da4d933b59aaefb6541, type: 3}
+  explosionSound: {fileID: 8300000, guid: d0373187ce6c1894f8964e1854c4ec76, type: 3}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

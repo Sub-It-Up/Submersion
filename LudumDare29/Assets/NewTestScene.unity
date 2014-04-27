@@ -678,6 +678,7 @@ MonoBehaviour:
   PlayerObjects:
   - {fileID: 974517973}
   - {fileID: 659821549}
+  grappleMaterial: {fileID: 2100000, guid: 6d5f92d320878f04bab61e9b2966b20c, type: 2}
 --- !u!81 &1320379051
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2435,7 +2436,7 @@ Rigidbody2D:
   m_LinearDrag: .600000024
   m_AngularDrag: .0500000007
   m_GravityScale: .00999999978
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1

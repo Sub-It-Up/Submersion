@@ -63,4 +63,9 @@ public class PlayerBehavior : MonoBehaviour
         if (this.transform.rigidbody2D.velocity.sqrMagnitude > PlayerMaxSpeed * PlayerMaxSpeed)
             this.transform.rigidbody2D.velocity = this.transform.rigidbody2D.velocity.normalized * PlayerMaxSpeed;
     }
+
+    public Vector2 GetColliderExtents()
+    {
+        return colliderExtents;
+    }
 }
