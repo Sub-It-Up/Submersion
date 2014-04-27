@@ -11,7 +11,9 @@ public class MissileBehavior : MonoBehaviour
     void Start()
     {
         SpineMineBehavior[] spineMines = FindObjectsOfType(typeof(SpineMineBehavior)) as SpineMineBehavior[];
-        closestSpineMine = spineMines[Random.Range(0, spineMines.Length)];
+        
+        if (spineMines.Length != 0)
+            closestSpineMine = spineMines[Random.Range(0, spineMines.Length)];
 
         /*for (int i = 0; i < spineMines.Length; i++)
         {
