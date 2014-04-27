@@ -882,6 +882,7 @@ MonoBehaviour:
   MissileObjects:
   - {fileID: 100000, guid: 41b301efbe2a4de478da1bc873b7ace5, type: 2}
   FireDelayTime: .5
+  DistanceFrom: .5
 --- !u!212 &1769072089
 SpriteRenderer:
   m_ObjectHideFlags: 0
