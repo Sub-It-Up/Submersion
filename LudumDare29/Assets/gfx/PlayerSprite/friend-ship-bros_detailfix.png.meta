@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 8f44be7ca7251eb44ad8be4a624f1b2f
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: friend-ship-bros_detailfix_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 109
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 109
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 110
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 109
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 109
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_5
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 109
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_6
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 110
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_7
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 109
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 73
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_9
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 73
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_10
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 74
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_11
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 73
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_12
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 73
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_13
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 73
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_14
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 74
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_15
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 73
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 37
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_17
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 37
+        width: 30
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_18
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 37
+        width: 30
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_19
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_20
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1
+        width: 30
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: friend-ship-bros_detailfix_21
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1
+        width: 30
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
