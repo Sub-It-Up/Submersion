@@ -7,13 +7,14 @@ public class MissileTerminalBehavior : MonoBehaviour
     public Transform[] MissileFirePoints;
     public GameObject[] MissileObjects;
     public float FireDelayTime = .5f;
+    public float DistanceFrom = .5f;
 
     private float elapsedTimeSinceFire = -1;
 
     // Update is called once per frame
     void Update()
     {
-        if (elapsedTimeSinceFire < 0 && Vector2.SqrMagnitude(PlayerObject.transform.position - this.transform.position) < 1
+        if (elapsedTimeSinceFire < 0 && Vector2.SqrMagnitude(PlayerObject.transform.position - this.transform.position) < DistanceFrom
             && Input.GetKeyDown(KeyCode.E))
         {
             int randomFirePointIndex = Random.Range(0, MissileFirePoints.Length);
