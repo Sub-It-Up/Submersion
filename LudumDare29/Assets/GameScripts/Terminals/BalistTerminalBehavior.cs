@@ -4,19 +4,22 @@ using System.Collections;
 public class BalistTerminalBehavior : MonoBehaviour 
 {
     public ShipPhysics PlayerShipPhysics;
-    public PlayerBehavior PlayerObject;
+    public PlayerBehavior[] PlayerObject;
     public float DistanceFrom = .5f;
     public float BalistStrength = 1;
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.SqrMagnitude(PlayerObject.transform.position - this.transform.position) < DistanceFrom)
+      for (int i = 0; i < 2; ++i)
+      {
+        if (Vector2.SqrMagnitude(PlayerObject[i].transform.position - this.transform.position) < DistanceFrom)
         {
-            if (Input.GetKey(KeyCode.E))
+          if (Input.GetAxis("RightButton" + PlayerObject[i].playerNum) > 0)
                 PlayerShipPhysics.balist += BalistStrength * Time.deltaTime;
-            else if (Input.GetKey(KeyCode.Q))
+          else if (Input.GetAxis("LeftButton" + PlayerObject[i].playerNum) > 0)
                 PlayerShipPhysics.balist -= BalistStrength * Time.deltaTime;
         }
+      }
     }
 }
