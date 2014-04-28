@@ -27,11 +27,18 @@ public class SpineMineBehavior : MonoBehaviour
     {
         if (collision.transform.name == "MainPlayerShip" || collision.transform.name.Contains("missile"))
         {
+            Transform spineMineExplosion = this.transform.FindChild("Spinemine_Explode");
+            spineMineExplosion.parent = null;
+            spineMineExplosion.particleSystem.Play();
+            GameObject.Destroy(spineMineExplosion.gameObject, spineMineExplosion.particleSystem.duration); // destroy this explosion after the duration
+
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             GameObject.Destroy(this.gameObject);
 
             if (collision.transform.name.Contains("missile"))
+            {
                 GameObject.Destroy(collision.transform.gameObject);
+            }
         }
     }
 }
