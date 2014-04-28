@@ -24,11 +24,14 @@ public class BalistTerminalBehavior : MonoBehaviour
     void Update()
     {
         bool[] activeButtons = { false, false };
+        bool[] close = { false, false };
 
         for (int i = 0; i < 2; ++i)
         {
             if (Vector2.SqrMagnitude(PlayerObject[i].transform.position - this.transform.position) < DistanceFrom)
             {
+                close[i] = true;
+
                 if (balistTerminal.sprite != NearBalist && !balistAnimator.enabled)
                     balistTerminal.sprite = NearBalist;
 
@@ -50,10 +53,13 @@ public class BalistTerminalBehavior : MonoBehaviour
 
                     activeButtons[i] = true;
                 }
+                else if (balistAnimator.enabled)
+                    balistAnimator.enabled = false;
             }
         }
 
-        if (activeButtons[0] == false && activeButtons[1] == false && balistTerminal.sprite != DeActiveBalist)
+        if (activeButtons[0] == false && activeButtons[1] == false && 
+            close[0] == false && close[1] == false && balistTerminal.sprite != DeActiveBalist)
         {
             balistAnimator.enabled = false; // disable just in case
             balistTerminal.sprite = DeActiveBalist;
