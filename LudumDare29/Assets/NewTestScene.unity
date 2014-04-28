@@ -313,7 +313,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_SortingLayerID: 2878703979
   m_Sprite: {fileID: 21300016, guid: 8f44be7ca7251eb44ad8be4a624f1b2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -576,7 +576,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_SortingLayerID: 2878703979
   m_Sprite: {fileID: 21300000, guid: 8f44be7ca7251eb44ad8be4a624f1b2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -859,6 +859,9 @@ MonoBehaviour:
   - {fileID: 659821549}
   DistanceFrom: .5
   RotationStrength: 1
+  NuetralLever: {fileID: 21300000, guid: 689a6fcd74425384db55d0630769d621, type: 3}
+  LeftLever: {fileID: 21300000, guid: 94edc9c95df55ee4a9fd96d108cdde1b, type: 3}
+  RightLever: {fileID: 21300000, guid: 6247ac9dc3d12fc4887f61fd7869bf26, type: 3}
 --- !u!212 &1495190494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2574,6 +2577,9 @@ MonoBehaviour:
   - {fileID: 100000, guid: 41b301efbe2a4de478da1bc873b7ace5, type: 2}
   FireDelayTime: .5
   DistanceFrom: .5
+  DeActiveTerminal: {fileID: 21300000, guid: 54411d0933a35e64da40e9f1d40ab765, type: 3}
+  NearTerminal: {fileID: 21300000, guid: 5a3ff4edadbd61b498e8355617794494, type: 3}
+  ActivatedTerminal: {fileID: 21300000, guid: cc6440ec13ff8b64b9e8d44af3a95760, type: 3}
 --- !u!212 &1769072089
 SpriteRenderer:
   m_ObjectHideFlags: 0
