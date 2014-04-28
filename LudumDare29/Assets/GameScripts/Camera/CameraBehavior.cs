@@ -24,15 +24,15 @@ public class CameraBehavior : MonoBehaviour
         // [1] -> the wrapped vector
         WrappedBoundaryData boundaryData = new WrappedBoundaryData();
 
-        if (checkVector.y < -WrapMaxSize - displaceVector.y)
+        if (checkVector.y < camera.transform.position.y + (-WrapMaxSize - displaceVector.y))
         {
             boundaryData.isWrapped     = true;
-            boundaryData.wrappedVector = new Vector2(checkVector.x, WrapMaxSize - displaceVector.y);
+            boundaryData.wrappedVector = new Vector2(checkVector.x, camera.transform.position.y + (WrapMaxSize - displaceVector.y));
         }
         else if (checkVector.y > WrapMaxSize + displaceVector.y)
         {
             boundaryData.isWrapped     = true;
-            boundaryData.wrappedVector = new Vector2(checkVector.x, -WrapMaxSize + displaceVector.y);
+            boundaryData.wrappedVector = new Vector2(checkVector.x, camera.transform.position.y + (-WrapMaxSize + displaceVector.y));
         }
         else if (checkVector.x < -2 * WrapMaxSize - displaceVector.x)
         {
@@ -50,20 +50,28 @@ public class CameraBehavior : MonoBehaviour
 
     void OnPostRender()
     {
-        Vector3 worldMouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        /*Vector3 worldMouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         Vector3 mouseDir = (worldMouse - PlayerObjects[0].transform.position);
         mouseDir = new Vector3(mouseDir.x, mouseDir.y, 0);
         mouseDir.Normalize();
-        RaycastHit2D raycastInfo = Physics2D.Raycast(PlayerObjects[0].transform.position + (PlayerObjects[0].GetColliderExtents().magnitude * mouseDir), mouseDir, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));
+        RaycastHit2D raycastInfo = Physics2D.Raycast(PlayerObjects[0].transform.position + (PlayerObjects[0].GetColliderExtents().magnitude * mouseDir), mouseDir, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));*/
 
-        GL.PushMatrix();
-        grappleMaterial.SetPass(0);
-        GL.Begin(GL.LINES);
-        GL.Color(grappleMaterial.color);
-        GL.Vertex(PlayerObjects[0].transform.position);
-        GL.Vertex(raycastInfo.point);
-        GL.End();
-        GL.PopMatrix();
+        for (int i = 0; i < PlayerObjects.Length; i++)
+        {
+            if (PlayerObjects[i].ActiveGrapple)
+            {
+                RaycastHit2D raycastInfo = PlayerObjects[i].GetGrappleLocation();
+
+                GL.PushMatrix();
+                grappleMaterial.SetPass(0);
+                GL.Begin(GL.LINES);
+                GL.Color(grappleMaterial.color);
+                GL.Vertex(PlayerObjects[i].transform.position);
+                GL.Vertex(raycastInfo.point);
+                GL.End();
+                GL.PopMatrix();
+            }
+        }
     }
 
     // Update is called once per frame

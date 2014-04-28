@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\GameScripts\Camera\CameraBehavior.cs" />
+     <Compile Include="Assets\GameScripts\Fountain\WaterFountainBehavior.cs" />
      <Compile Include="Assets\GameScripts\Missile\MissileBehavior.cs" />
      <Compile Include="Assets\GameScripts\Player\PlayerBehavior.cs" />
      <Compile Include="Assets\GameScripts\Player\PlayerShipBehavior.cs" />
