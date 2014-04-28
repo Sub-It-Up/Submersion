@@ -74,6 +74,46 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &49621369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 49621371}
+  - 114: {fileID: 49621370}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &49621370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 49621369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5ba9af671016f4aa161a8ce112a33d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boatPart: {fileID: 100000, guid: 7ed89a64630b0324ebe2781ab2a80ab3, type: 2}
+  buttonRoom: {fileID: 100000, guid: 1c0ea08de365e4349954a4b78b5a498f, type: 2}
+--- !u!4 &49621371
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 49621369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.03217983, y: 5.32928658, z: 2.41918945}
+  m_LocalScale: {x: .180000007, y: .200000003, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &209735106
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +185,8 @@ MonoBehaviour:
   - {fileID: 659821549}
   DistanceFrom: .5
   ThrustStrength: 1
+  DeActiveThruster: {fileID: 21300000, guid: c27b4a52aab99ed4993a0d31f23f30f5, type: 3}
+  ActiveThruster: {fileID: 21300000, guid: 298c4625f2f260246a5e29cb1fdfd74e, type: 3}
 --- !u!212 &273252468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2613,6 +2655,7 @@ GameObject:
   - 4: {fileID: 1811679356}
   - 212: {fileID: 1811679355}
   - 114: {fileID: 1811679354}
+  - 95: {fileID: 1811679357}
   m_Layer: 0
   m_Name: BalistTerminal
   m_TagString: Untagged
@@ -2637,6 +2680,8 @@ MonoBehaviour:
   - {fileID: 659821549}
   DistanceFrom: .5
   BalistStrength: 1
+  DeActiveBalist: {fileID: 21300000, guid: 6f7918467decc664db5a94524a6f2586, type: 3}
+  NearBalist: {fileID: 21300000, guid: 927e7cce048539f4193fd429bfb40a38, type: 3}
 --- !u!212 &1811679355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2671,6 +2716,20 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1581425283}
+--- !u!95 &1811679357
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811679353}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 963e60b07e28a704f992dae33d25d62d, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 0
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &1833306104
 GameObject:
   m_ObjectHideFlags: 0

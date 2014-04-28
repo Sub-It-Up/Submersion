@@ -22,7 +22,7 @@ public class RotationalTerminalBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int foundCount = 0;
+        bool[] activeButtons = { false, false };
 
         for (int i = 0; i < 2; ++i)
         {
@@ -34,6 +34,8 @@ public class RotationalTerminalBehavior : MonoBehaviour
                         rotationalTerminal.sprite = RightLever;
 
                     PlayerShipPhysics.dirDeg -= RotationStrength * Time.deltaTime;
+
+                    activeButtons[i] = true;
                 }
                 else if (Input.GetAxis("LeftButton" + PlayerObject[i].playerNum) > 0)
                 {
@@ -41,15 +43,13 @@ public class RotationalTerminalBehavior : MonoBehaviour
                         rotationalTerminal.sprite = LeftLever;
 
                     PlayerShipPhysics.dirDeg += RotationStrength * Time.deltaTime;
-                }
-                else if (rotationalTerminal.sprite != NuetralLever)
-                    rotationalTerminal.sprite = NuetralLever;
 
-                foundCount++;
+                    activeButtons[i] = true;
+                }
             }
         }
 
-        if (foundCount == 0 && rotationalTerminal.sprite != NuetralLever)
+        if (activeButtons[0] == false && activeButtons[1] == false && rotationalTerminal.sprite != NuetralLever)
             rotationalTerminal.sprite = NuetralLever;
     }
 }
