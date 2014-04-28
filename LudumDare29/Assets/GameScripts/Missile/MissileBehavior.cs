@@ -42,6 +42,9 @@ public class MissileBehavior : MonoBehaviour
         WrappedBoundaryData boundaryData = Camera.main.GetComponent<CameraBehavior>().isOutsideBoundary(this.transform.position, Vector2.zero);
 
         if (boundaryData.isWrapped)
+        {
+            transform.FindChild("TrailRenderer").parent = null; // remove trail renderer to allow for natural destroyal
             GameObject.Destroy(this.gameObject);
+        }
     }
 }
