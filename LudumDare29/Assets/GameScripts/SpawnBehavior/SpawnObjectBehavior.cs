@@ -8,6 +8,11 @@ public class SpawnObjectBehavior : MonoBehaviour
 
     private float elapsedTimeSinceSpawn;
 
+    void Start()
+    {
+        elapsedTimeSinceSpawn = DelayTime;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -20,19 +25,19 @@ public class SpawnObjectBehavior : MonoBehaviour
 
             if (randomSpawnArea == 0)
             {
-                spawnPos = new Vector2(-2 * Camera.main.orthographicSize - extents.x, Random.Range(-Camera.main.orthographicSize, Camera.main.orthographicSize));
+                spawnPos = new Vector2(-2 * Camera.main.orthographicSize - extents.x, Camera.main.transform.position.y + Random.Range(-Camera.main.orthographicSize, Camera.main.orthographicSize));
             }
             else if (randomSpawnArea == 1)
             {
-                spawnPos = new Vector2(Random.Range(-2 * Camera.main.orthographicSize, 2 * Camera.main.orthographicSize), Camera.main.orthographicSize + extents.y);
+                spawnPos = new Vector2(Random.Range(-2 * Camera.main.orthographicSize, 2 * Camera.main.orthographicSize), Camera.main.transform.position.y + Camera.main.orthographicSize + extents.y);
             }
             else if (randomSpawnArea == 2)
             {
-                spawnPos = new Vector2(2 * Camera.main.orthographicSize + extents.x, Random.Range(-Camera.main.orthographicSize, Camera.main.orthographicSize));
+                spawnPos = new Vector2(2 * Camera.main.orthographicSize + extents.x, Camera.main.transform.position.y +  Random.Range(-Camera.main.orthographicSize, Camera.main.orthographicSize));
             }
             else if (randomSpawnArea == 3)
             {
-                spawnPos = new Vector2(Random.Range(-2 * Camera.main.orthographicSize, 2 * Camera.main.orthographicSize), -Camera.main.orthographicSize - extents.y);
+                spawnPos = new Vector2(Random.Range(-2 * Camera.main.orthographicSize, 2 * Camera.main.orthographicSize), Camera.main.transform.position.y +  -Camera.main.orthographicSize - extents.y);
             }
 
             GameObject.Instantiate(SpawnObject[randomSpawnObject], spawnPos, Quaternion.identity);

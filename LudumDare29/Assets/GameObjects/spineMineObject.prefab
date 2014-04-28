@@ -111,6 +111,7 @@ MonoBehaviour:
   MovePower: 4
   MaxSpeed: 1.29999995
   explosionSound: {fileID: 8300000, guid: d0373187ce6c1894f8964e1854c4ec76, type: 3}
+  WaterLeak: {fileID: 100002, guid: e80e1c1cfb6b80b4c96f23f7a0eba65d, type: 2}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

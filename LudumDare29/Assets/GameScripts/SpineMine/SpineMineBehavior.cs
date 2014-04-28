@@ -6,6 +6,7 @@ public class SpineMineBehavior : MonoBehaviour
     public float MovePower = 10;
     public float MaxSpeed = 2;
     public AudioClip explosionSound;
+    public GameObject WaterLeak;
 
     private Vector2 movementDirection = Vector2.zero;
 
@@ -35,9 +36,30 @@ public class SpineMineBehavior : MonoBehaviour
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             GameObject.Destroy(this.gameObject);
 
+            Camera.main.GetComponent<CameraBehavior>().MinesDestroyed++;
+
             if (collision.transform.name.Contains("missile"))
             {
                 GameObject.Destroy(collision.transform.gameObject);
+            }
+            else if (collision.transform.name == "MainPlayerShip")
+            {
+                Vector2 average_normal = Vector2.zero;
+                Vector2 average_point = Vector2.zero;
+
+                foreach (ContactPoint2D contact in collision.contacts)
+                {
+                    average_normal += contact.normal;
+                    average_point += contact.point;
+                }
+
+                average_normal /= collision.contacts.Length;
+                average_point /= collision.contacts.Length;
+
+                float angle = Mathf.Atan2(-average_normal.y, -average_normal.x) * Mathf.Rad2Deg;
+
+                GameObject newLeak = (GameObject)GameObject.Instantiate(WaterLeak, average_point, Quaternion.Euler(new Vector3(0, 0, angle - 90)));
+                newLeak.transform.parent = collision.transform;
             }
         }
     }

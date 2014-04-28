@@ -35,13 +35,13 @@ public class PlayerBehavior : MonoBehaviour
         if (raycastInfo)
             Debug.DrawLine(new Vector2(this.transform.position.x, this.transform.position.y - (colliderExtents.y + .005f)), raycastInfo.point, Color.red);
 
-        if (Input.GetAxis("GrappleActivator" + playerNum) == 0) // no GrappleActivator active
+        if ((!Input.GetKey(KeyCode.LeftShift) && playerNum == 1) || (!Input.GetKey(KeyCode.RightControl) && playerNum == 2)) // no GrappleActivator active
         {
             if (this.ActiveGrapple) // de-activate grapple
             {
                 this.ActiveGrapple = false;
-                this.rigidbody2D.isKinematic = false;
-                this.transform.parent = null;
+                this.rigidbody2D.gravityScale = 1;
+                this.transform.eulerAngles = new Vector3(0, 0, 0);
             }
 
             if (Input.GetAxis("Horizontal" + playerNum) < 0) // run left
@@ -80,31 +80,38 @@ public class PlayerBehavior : MonoBehaviour
         }
         else // in grapple mode
         {
-            if (!playerAnimatorState.IsName("Idle"))
-                playerAnimator.Play("Idle");
+            //if (Input.GetAxis("GrappleActivator" + playerNum) > 0)
+            //{
+                if (!playerAnimatorState.IsName("Idle"))
+                    playerAnimator.Play("Idle");
 
-            if (Input.GetAxis("Horizontal" + playerNum) < 0)
-                grappleDirection = -this.transform.right;
-            else if (Input.GetAxis("Horizontal" + playerNum) > 0)
-                grappleDirection = this.transform.right;
-            else if (Input.GetAxis("Vertical" + playerNum) < 0)
-                grappleDirection = -Vector2.up;
-            else if (Input.GetAxis("Vertical" + playerNum) > 0)
-                grappleDirection = Vector2.up;
+                if (Input.GetAxis("Horizontal" + playerNum) < 0)
+                    grappleDirection = -this.transform.right;
+                else if (Input.GetAxis("Horizontal" + playerNum) > 0)
+                    grappleDirection = this.transform.right;
+                else if (Input.GetAxis("Vertical" + playerNum) < 0)
+                    grappleDirection = -Vector2.up;
+                else if (Input.GetAxis("Vertical" + playerNum) > 0)
+                    grappleDirection = Vector2.up;
 
-            currentGrappleTo = CalculateGrapple(grappleDirection);
+                this.transform.eulerAngles = new Vector3(0, 0, 0);
+
+                currentGrappleTo = CalculateGrapple(grappleDirection);
+            //}
         }
 
         if (this.ActiveGrapple)
         {
-            if (!this.rigidbody2D.isKinematic)
-                this.rigidbody2D.isKinematic = true;
+            if (this.rigidbody2D.gravityScale != 0)
+            {
+                this.rigidbody2D.gravityScale = 0;
+            }
 
             this.rigidbody2D.velocity = MainPlayerShip.rigidbody2D.velocity;
 
             Vector2 pos = new Vector2(this.transform.position.x, this.transform.position.y);
 
-            if ((currentGrappleTo.point - pos).sqrMagnitude > GrappleStopDistance)
+            if ((currentGrappleTo.point - pos).sqrMagnitude >= GrappleStopDistance)
             {
                 Vector2 direction = currentGrappleTo.point - pos;
                 direction.Normalize();
@@ -118,10 +125,10 @@ public class PlayerBehavior : MonoBehaviour
     {
         //Vector3 worldMouse = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         Vector2 pos = new Vector2(this.transform.position.x, this.transform.position.y);
-        Vector2 dir = ((pos + direction) - pos);
-        dir.Normalize();
+        grappleDirection = ((pos + direction) - pos);
+        grappleDirection.Normalize();
 
-        RaycastHit2D raycastInfo = Physics2D.Raycast(pos + (this.GetColliderExtents().magnitude * dir), dir, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));
+        RaycastHit2D raycastInfo = Physics2D.Raycast(pos + (this.GetColliderExtents().magnitude * grappleDirection), grappleDirection, Mathf.Infinity, 1 << LayerMask.NameToLayer("GroundLayer"));
 
         this.ActiveGrapple = true;
 

@@ -54,7 +54,7 @@ public class MissileBehavior : MonoBehaviour
             Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 missileToWorldMouse = worldMousePos - transform.position;
 
-            Vector3 newDir = missileToWorldMouse - transform.position;
+            Vector3 newDir = missileToWorldMouse;
             float newRot = Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, newRot - 90), Time.deltaTime);
