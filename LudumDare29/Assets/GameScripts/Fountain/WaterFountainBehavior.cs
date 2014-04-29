@@ -20,8 +20,10 @@ public class WaterFountainBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!toBeDestroyed)
-            Camera.main.GetComponent<CameraBehavior>().CurrentHealth -= .075f * Time.deltaTime;
+        if (!toBeDestroyed && !GameObject.Find("MainPlayerShip").GetComponent<PlayerShipBehavior>().Dead())
+        {
+            Camera.main.GetComponent<CameraBehavior>().CurrentHealth -= .15f * Time.deltaTime;
+        }
 
         for (int i = 0; i < PlayerObject.Length; i++)
         {
@@ -34,5 +36,10 @@ public class WaterFountainBehavior : MonoBehaviour
                 toBeDestroyed = true;
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        GameObject.Find("MainPlayerShip").GetComponent<PlayerShipBehavior>().LeakCount--;
     }
 }

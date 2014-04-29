@@ -1007,7 +1007,8 @@ public class ShipConstruction : MonoBehaviour {
     int trRoomNum;
     int tmlRoomNum;
     int tmrRoomNum;
-    int mrrRoomNum;
+    //int mrrRoomNum;
+
 		int rRoomNum = (int)Random.Range (1, 5);
 		do
 		{

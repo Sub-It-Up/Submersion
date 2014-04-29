@@ -15,6 +15,7 @@ public class CameraBehavior : MonoBehaviour
     public Transform[] FollowCameraObjects;
     public PlayerBehavior[] PlayerObjects;
     public Material grappleMaterial;
+    public SpriteRenderer BackgroundFade;
 
     private float totalTime = 0;
     private int minesDestroyed = 0;
@@ -31,6 +32,11 @@ public class CameraBehavior : MonoBehaviour
     {
         get { return currentHealth; }
         set { currentHealth = value; }
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     // Determines if a particular object needs to be wrapped
@@ -98,33 +104,52 @@ public class CameraBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WrappedBoundaryData playerShipBoundaryData = isOutsideBoundary(PlayerShipObject.transform.position, PlayerShipObject.getColliderExtents());
-
-        this.transform.position = new Vector3(this.transform.position.x, PlayerShipObject.transform.position.y, this.transform.position.z);
-
-        for (int i = 0; i < FollowCameraObjects.Length; i++)
-            FollowCameraObjects[i].position = new Vector3(FollowCameraObjects[i].position.x, this.transform.position.y, FollowCameraObjects[i].position.z);
-
-        if (playerShipBoundaryData.isWrapped)
+        if (!PlayerShipObject.Dead())
         {
-            // temporarily set parent of Player Objects to allow them to also wrap
-            for (int i = 0; i < PlayerObjects.Length; i++)
-                PlayerObjects[i].transform.parent = PlayerShipObject.transform;
+            WrappedBoundaryData playerShipBoundaryData = isOutsideBoundary(PlayerShipObject.transform.position, PlayerShipObject.getColliderExtents());
 
-            PlayerShipObject.transform.position = playerShipBoundaryData.wrappedVector; // wrap
+            this.transform.position = new Vector3(this.transform.position.x, PlayerShipObject.transform.position.y, this.transform.position.z);
 
-            // reset Player Objects parent to null
-            for (int i = 0; i < PlayerObjects.Length; i++)
-                PlayerObjects[i].transform.parent = null;
+            for (int i = 0; i < FollowCameraObjects.Length; i++)
+                FollowCameraObjects[i].position = new Vector3(FollowCameraObjects[i].position.x, this.transform.position.y, FollowCameraObjects[i].position.z);
+
+            if (playerShipBoundaryData.isWrapped)
+            {
+                // temporarily set parent of Player Objects to allow them to also wrap
+                for (int i = 0; i < PlayerObjects.Length; i++)
+                    PlayerObjects[i].transform.parent = PlayerShipObject.transform;
+
+                PlayerShipObject.transform.position = playerShipBoundaryData.wrappedVector; // wrap
+
+                // reset Player Objects parent to null
+                for (int i = 0; i < PlayerObjects.Length; i++)
+                    PlayerObjects[i].transform.parent = null;
+            }
+
+            totalTime += Time.deltaTime;
         }
+        else
+        {
+            if (BackgroundFade.color.a < 1)
+            {
+                BackgroundFade.color = new Color(BackgroundFade.color.r,
+                    BackgroundFade.color.g, BackgroundFade.color.b, BackgroundFade.color.a + .25f * Time.deltaTime);
 
-        totalTime += Time.deltaTime;
+                if (BackgroundFade.color.a > 1)
+                    BackgroundFade.color = new Color(BackgroundFade.color.r,
+                    BackgroundFade.color.g, BackgroundFade.color.b, 1);
+            }
+        }
 
         TimeSpan t = TimeSpan.FromSeconds(totalTime);
         string formattedTime = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
 
+        if (CurrentHealth < 0)
+            CurrentHealth = 0;
+
         GameObject.Find("TotalTime_Text").GetComponent<GUIText>().text = formattedTime;
         GameObject.Find("MinesDestroyed_Text").GetComponent<GUIText>().text = Convert.ToString(minesDestroyed);
         GameObject.Find("Health_Text").GetComponent<GUIText>().text = Convert.ToString((((int)currentHealth / maxHealth) * 100)) + "%";
+        GameObject.Find("LeakCount_Text").GetComponent<GUIText>().text = Convert.ToString(PlayerShipObject.LeakCount);
     }
 }

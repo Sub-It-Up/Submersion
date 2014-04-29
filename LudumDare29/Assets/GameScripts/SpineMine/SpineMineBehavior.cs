@@ -59,6 +59,7 @@ public class SpineMineBehavior : MonoBehaviour
                 float angle = Mathf.Atan2(-average_normal.y, -average_normal.x) * Mathf.Rad2Deg;
 
                 GameObject newLeak = (GameObject)GameObject.Instantiate(WaterLeak, average_point, Quaternion.Euler(new Vector3(0, 0, angle - 90)));
+                collision.transform.GetComponent<PlayerShipBehavior>().LeakCount++;
                 newLeak.transform.parent = collision.transform;
             }
         }
